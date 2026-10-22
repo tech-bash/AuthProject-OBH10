@@ -1,4 +1,3 @@
-
 import { Navigate, Route, Routes, Link } from "react-router-dom";
 import { useAuth } from "./context/AuthContext.jsx";
 

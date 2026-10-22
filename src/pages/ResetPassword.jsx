@@ -3,7 +3,31 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
+export default function ResetPassword() {
+    const {resetPassword, loading} = useAuth();
+    const navigate = useNavigate();
 
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [success, setSuccess] = useState("");
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        setSuccess("");
+        try {
+           const result = await resetPassword(
+            email,
+            newPassword
+           );
+
+           setSuccess(result.message);
+           setTimeout(() => navigate("/login") , 1500); // hold for 1.5 seconds and then send to login page
+        }
+        catch(error){
+            console.log(error.message)
+        }
+    }
 
   return (
     <section className="card auth-card">

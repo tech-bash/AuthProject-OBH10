@@ -1,8 +1,7 @@
 // have login inside the protected route .. 
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { login } from "../pages/Login";
 
-import {useAuth} from "./context/AuthContext"
+import {useAuth} from "../context/AuthContext"
 
 export default function ProtectedRoute() {
     const {user, loading}  = useAuth();

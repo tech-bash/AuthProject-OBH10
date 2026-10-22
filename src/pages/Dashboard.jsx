@@ -2,7 +2,15 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
+export default function Dashboard() {
+    const {user, logout} = useAuth();
+    const navigate = useNavigate();
 
+    async function handleLogout() {
+        logout();
+
+        navigate('/login');
+    }
 
   return (
     <section className="card dashboard-card">

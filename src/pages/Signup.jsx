@@ -3,7 +3,31 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
+export default function Signup() {
+    const {signup, loading} = useAuth();
+    const navigate = useNavigate();
 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    // const [rememberMe, setRememberMe] = useState(true);
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        try {
+            await signup(
+                {name, email, password},
+                rememberMe
+            );
+
+            navigate("/login");
+        }
+        catch (err){
+            console.log(err.message)
+        }
+    }
+    
 
   return (
     <section className="card auth-card">
@@ -43,19 +67,8 @@ import { useAuth } from "../context/AuthContext.jsx";
           onChange={(event) => setPassword(event.target.value)}
           placeholder="At least 6 characters"
         />
-
-        <label className="checkbox-row">
-          <input
-            type="checkbox"
-            checked={rememberMe}
-            onChange={(event) =>
-              setRememberMe(event.target.checked)
-            }
-          />
-          Remember me
-        </label>
-
-        {error && (
+          
+        {error (
           <p className="alert error" role="alert">
             {error}
           </p>

@@ -27,10 +27,10 @@ function saveUsers(users) {
 }
 
 function createSession(user) {
-    const { password, ...safeUser } = user;
+    const { password, ...newUser } = user;
 
     return {
-        user: safeUser,
+        user: newUser,
         token: `demo-${Date.now()}-${Math.random()}`,
     };
 }
