@@ -11,6 +11,7 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // const [rememberMe, setRememberMe] = useState(true);
+    const [error, setError] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -24,7 +25,7 @@ export default function Signup() {
             navigate("/login");
         }
         catch (err){
-            console.log(err.message)
+            console.log(setError(err) || "Not able to open signup");
         }
     }
     

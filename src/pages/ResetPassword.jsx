@@ -11,6 +11,7 @@ export default function ResetPassword() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
     const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -24,8 +25,8 @@ export default function ResetPassword() {
            setSuccess(result.message);
            setTimeout(() => navigate("/login") , 1500); // hold for 1.5 seconds and then send to login page
         }
-        catch(error){
-            console.log(error.message)
+        catch(err){
+            console.log(setError(err) || "Something is wrong ")
         }
     }
 
