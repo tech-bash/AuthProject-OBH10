@@ -23,7 +23,10 @@ export default function ResetPassword() {
            );
 
            setSuccess(result.message);
-           setTimeout(() => navigate("/login") , 1500); // hold for 1.5 seconds and then send to login page
+           setTimeout(() =>  navigate(
+        location.state?.from?.pathname || "/",
+        { replace: true }
+      ), 1500); // hold for 1.5 seconds and then send to login page
         }
         catch(err){
             console.log(setError(err) || "Something is wrong ")

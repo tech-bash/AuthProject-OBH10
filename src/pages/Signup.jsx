@@ -10,7 +10,7 @@ export default function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [rememberMe, setRememberMe] = useState(true);
+    //const [rememberMe, setRememberMe] = useState(true);
     const [error, setError] = useState("");
 
     async function handleSubmit(event) {
@@ -18,11 +18,13 @@ export default function Signup() {
 
         try {
             await signup(
-                {name, email, password},
-                rememberMe
+                {name, email, password}
             );
 
-            navigate("/login");
+             navigate(
+        location.state?.from?.pathname || "/login",
+        { replace: true }
+      );
         }
         catch (err){
             console.log(setError(err) || "Not able to open signup");
@@ -69,7 +71,7 @@ export default function Signup() {
           placeholder="At least 6 characters"
         />
           
-        {error (
+        {error && (
           <p className="alert error" role="alert">
             {error}
           </p>
